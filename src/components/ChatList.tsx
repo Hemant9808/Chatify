@@ -13,6 +13,7 @@ interface Chat {
   chatName: string;
   latestMessage: any;
   updatedAt: string;
+  users:[]
 }
 
 interface ChatListProps {
@@ -28,9 +29,12 @@ const ChatList: React.FC<ChatListProps> = ({setUsers,users,setChatName,chats,set
   const [query,setQuery]= useState('');
   const auth = useAuth();
   const dispatch = useDispatch();
+  console.log("chats sdasa",chats);
   
   const storedUser=localStorage.getItem("user")
-  const currentUser = JSON.parse(storedUser || '') 
+  const currentUser = storedUser ? JSON.parse(storedUser) : null;
+  
+  //const currentUser = JSON.parse(storedUser || '') 
   //const chats = useSelector((state: RootState) => state.user.chat);
   const allMessages = useSelector((state: RootState) => state.user.messages);
 
@@ -64,6 +68,7 @@ const ChatList: React.FC<ChatListProps> = ({setUsers,users,setChatName,chats,set
   useEffect(()=>{
     setMessages(allMessages);
     auth.chatDetails('668d304f1deaea4f02b4936a');
+    
   },[allMessages])
 
 const userSearch =async(query:string)=>{
@@ -100,9 +105,21 @@ const accessChat =async(userId:string)=>{
 }
  
 }
+const [sortedChats,setSortedChats]= useState<any>();
+const sortChat = ()=>{
+  if(chats.length>1){
+    const Chats=chats.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+    setSortedChats(Chats);
+  }
+  else{
+    console.log("not sorted");
+    
+  }
+}
 
+//const Chats=chats.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
   return (
-    <div className="w-[30%] rounded-2xl ml-2 bg-gray-800 text-white overflow-y-auto">
+    <div className="w-[30%] min-w-[15rem] rounded-2xl ml-2 bg-gray-800 text-white overflow-y-auto">
      <>
       <div className="p-4">
         <input
@@ -126,15 +143,15 @@ const accessChat =async(userId:string)=>{
                 src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
                 alt=""
               />
-              <div className="ml-4  w-[100%]">
-                <div className=" flex self-stretch justify-between">
+              <div className="ml-4   w-[100%]">
+                <div className="  flex  justify-between">
                   { chat.users.map((user:any)=>(
 
-                    <div>
-                      {user._id!=currentUser._id &&<div>
+                    <>
+                      {user._id!=currentUser._id &&<div className="">
                         { user.name}
                       </div>}
-                    </div>
+                    </>
                    
 
                   )) }

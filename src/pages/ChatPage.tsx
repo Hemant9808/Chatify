@@ -10,9 +10,12 @@ import { addSingleMessage, updateChat } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import io from "socket.io-client";
-const ENDPOINT = "http://localhost:3000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
-var socket, selectedChatCompare;
+import io, { Socket } from "socket.io-client";
+const ENDPOINT = "https://chatify-backend-4.onrender.com";
+//const ENDPOINT ="http://localhost:3000"
+ // "https://talk-a-tive.herokuapp.com"; -> After deployment
+var  socket: Socket | null = null;
+//, selectedChatCompare;
 
 const ChatPage: React.FC = () => {
   const dispatch = useDispatch()
@@ -23,9 +26,14 @@ const ChatPage: React.FC = () => {
   const [selectedChat,setSlectedChat]=useState('')
   const [socketConnected,setSocketConnected]=useState(false);
   const [chatName,setChatName]= useState('');
-  const [users,setUsers]= useState([]);
+  const [users,setUsers]= useState<any>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
   useEffect(() => {
+   
+    
     const token = localStorage.getItem("token");
+
     if (token) {
       console.log("from auth comtext", token);
       fetchAllChats();
@@ -33,14 +41,17 @@ const ChatPage: React.FC = () => {
     if (!token) {
       console.log("from auth comtext", token);
 
-      navigate("/login");
+      navigate("/");
     }
   }, []);
 
-  const chats = useSelector((state: RootState) => state.user.chat);
+  const chats = useSelector((state: RootState) => state.user.chat || []);
+  console.log("chats use selector",chats);
+  
   //const user = useSelector((state: RootState) => state.user.user);
   const storedUser=localStorage.getItem("user")
-  const user = JSON.parse(storedUser || '') 
+  //const user = JSON.parse(storedUser || 'null')
+  const user = storedUser ? JSON.parse(storedUser) : null; 
   console.log("user",user);
   
   const fetchAllChats = useCallback(async () => {
@@ -65,7 +76,7 @@ const ChatPage: React.FC = () => {
       
     });
     return () => {
-      socket.off("message received");
+      socket?.off("message received");
     };
     // socket.on("typing", () => setIsTyping(true));
     // socket.on("stop typing", () => setIsTyping(false));
@@ -89,10 +100,10 @@ const ChatPage: React.FC = () => {
       {chatName != '' ? <div className=" w-[100%]  flex flex-col max-h-[100vh] pl-2 ">
         <div className=" rounded-md">
          
-          <ChatName chatName={chatName}  />
+          <ChatName setSearchTerm={setSearchTerm} searchTerm={searchTerm} chatName={chatName}  />
         </div>
        <div className="p-1">
-          <MessageArea messages={messages} />
+          <MessageArea searchTerm={searchTerm} messages={messages}/>
         </div> 
         <div className=" ">
           <InputField socket={socket} selectedChat={selectedChat}  />

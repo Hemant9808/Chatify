@@ -4,13 +4,19 @@ import SearchIcon from '@mui/icons-material/Search';
 
 interface ChatNameProps {
  chatName:string
+ searchTerm:string
+ setSearchTerm:any
 }
-  const ChatName: React.FC<ChatNameProps>=({chatName})=>{
+  const ChatName: React.FC<ChatNameProps>=({searchTerm,setSearchTerm,chatName})=>{
   const [isExpanded, setIsExpanded] = useState(false);
+  
+
 
   const handleSearchClick = () => {
     setIsExpanded(!isExpanded);
+
   };
+ 
   return (
     <div className=" rounded-2xl  w-[100%] top-0  flex items-center p-4 bg-white shadow">
        <img className='w-12 rounded-full' src="https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" alt="" />
@@ -28,6 +34,8 @@ interface ChatNameProps {
       </IconButton>
       {isExpanded && (
         <InputBase
+        value={searchTerm}
+        onChange={(e)=>setSearchTerm(e.target.value)}
           placeholder="Search…"
           inputProps={{ 'aria-label': 'search' }}
           sx={{ ml: 1, flex: 1 }}

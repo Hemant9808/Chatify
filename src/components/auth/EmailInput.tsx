@@ -7,8 +7,9 @@ interface EmailInputProps {
   socialLoginClicked: any
   setValid: any
   loading: boolean
+  setCurrentComponent:any
 }
-const EmailInput: React.FC<EmailInputProps> = ({ onsubmit, setValid, valid, socialLoginClicked, loading }) => {
+const EmailInput: React.FC<EmailInputProps> = ({ setCurrentComponent, onsubmit, setValid, valid, socialLoginClicked, loading }) => {
   const handleSubmit = (event: any) => {
     event.preventDefault()
 
@@ -79,10 +80,13 @@ const EmailInput: React.FC<EmailInputProps> = ({ onsubmit, setValid, valid, soci
                   </div>
                   <div className='grow shrink basis-0 h-[0px] border-[1px] border-stone-950/opacity-5'></div>
                 </div>
+
+                
+
                 <div className='self-stretch px-5 py-1   rounded-[60px] border border-stone-950/opacity-5 hover:bg-[#e7e6e6]  backdrop-blur-[19.90px] flex-col justify-center items-center gap-2 flex'>
                   <div className='self-stretch   flex-col justify-center items-start gap-4 flex'>
                     <div className='self-stretch justify-center items-center gap-2.5 inline-flex'>
-                      <img className='w-5 h-5 relative' src='/images/logos/google.png' />
+                      <img className='w-5 h-5 relative' src='/src/assets/google.png' />
                       <button
                         onClick={() => socialLoginClicked('google')}
                         className="text-center text-stone-950 py-2 opacity-80 md:text-lg text-md font-[500] font-['Roboto'] leading-snug"
@@ -91,7 +95,11 @@ const EmailInput: React.FC<EmailInputProps> = ({ onsubmit, setValid, valid, soci
                       </button>
                     </div>
                   </div>
+                  
                 </div>
+                <div  onClick={()=>{setCurrentComponent("ConfirmPassword");console.log("cliked create new account");
+                }} ><a className='bg-indigo-500 flex items-center justify-center cursor-pointer text-white px-5 py-2 rounded-3xl '>create new account</a></div>
+
                 <div className='text-center'>
                   <span className="text-zinc-400 text-sm font-medium font-['Roboto'] leading-[16.80px]">
                     By logging in you agree to

@@ -18,7 +18,7 @@ const LoginPage = () => {
 
   const history = createBrowserHistory();
   const auth = useAuth()
-  const [currentComponent, setCurrentComponent] = useState('ConfirmPassword') // State to manage which component to display
+  const [currentComponent, setCurrentComponent] = useState('EmailInput') // State to manage which component to display
   const [email, setEmail] = useState('')
   const [member, setMember] = useState(false)
   const [password, setPassword] = useState('')
@@ -35,6 +35,19 @@ const LoginPage = () => {
   //     setCurrentComponent('ConfirmPassword')
   //   }
   // }, [emailParam, isMember])
+
+  useEffect(() => {
+   
+    
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      console.log("token", token);
+     
+      navigate("/chat");
+    }
+   
+  }, []);
 
   const handleEmailSubmit = async (email: string) => {
     setLoading(true)
@@ -123,7 +136,7 @@ console.log("isLoggedIn login page", isLoggedIn);
   const renderComponent = () => {
     switch (currentComponent) {
       case 'EmailInput':
-        return <EmailInput loading={loading} setValid={setValid} socialLoginClicked={socialLoginClicked} valid={valid} onsubmit={handleEmailSubmit} />
+        return <EmailInput setCurrentComponent={setCurrentComponent} loading={loading} setValid={setValid} socialLoginClicked={socialLoginClicked} valid={valid} onsubmit={handleEmailSubmit} />
       case 'PasswordInput':
         return <PasswordInput loading={loading} setCurrentComponent={setCurrentComponent} member={member} password={password} setPassword={setPassword} email={email} handleSignIn={handleSignIn} />
       case 'ConfirmPassword':
@@ -135,7 +148,10 @@ console.log("isLoggedIn login page", isLoggedIn);
 
   return (
     <div>
-      <div className='relative w-[100%] h-screen bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 flex items-center justify-center'>
+      {/* <div className='relative w-[100%] overflow-hidden h-screen bg-gradient-to-r from-teal-100 via-blue-100 to-indigo-100 flex items-center justify-center'>  */}
+      <div className='relative w-[100%] overflow-hidden h-screen bg-gradient-to-r from-teal-100 via-blue-100 to-indigo-200 flex items-center justify-center'>
+
+      {/* <div className='relative w-[100%] overflow-hidden h-screen bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 flex items-center justify-center'> */}
         <div className='absolute  w-[100%] overflow-hidden  h-screen  flex justify-between items-center'>
           <div className=' absolute w-[100%]  h-screen flex justify-between items-center '>
             {/* <div className="absolute w-[40%] h-screen  bg-indigo-500 rounded-full blur-[400px]" /> */}

@@ -16,8 +16,7 @@ interface reduxState {
 const initialState : reduxState = {
     user:{},
     messages:[],
-    chat:{}
-
+    chat:[]
 };
 
 const userSlice = createSlice({

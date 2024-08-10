@@ -19,7 +19,7 @@ const App: React.FC = () => {
       <Provider store={store}>
       <Router>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage />} />
           
             <Route path="/chat" element={<ChatPage />} />
          

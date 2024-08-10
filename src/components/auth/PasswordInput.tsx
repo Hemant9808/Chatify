@@ -37,7 +37,7 @@ const passwordInput: React.FC<passwordInputProps> = ({
           <div className='self-stretch w-[100%] justify-center items-center px-4 gap-2 inline-flex'>
             <div className='absolute  h-[26px] flex items-center px-5  left-0 '>
               <img
-                src='/images/logos/arrow-left.png'
+                src='/src/assets/arrow-left.png'
                 onClick={() => setCurrentComponent('EmailInput')}
                 className='w-[24px] cursor-pointer  left-0 text-black sm:h-[23px] h-[20px] '
               />
@@ -107,7 +107,7 @@ const passwordInput: React.FC<passwordInputProps> = ({
                 </div>
               </div>
               <div
-                className="text-center text-zinc-500 text-sm font-medium font-['Roboto'] underline uppercase leading-[16.80px] cursor-pointer"
+                className="text-center mb-4 text-zinc-500 text-sm font-medium font-['Roboto'] underline uppercase leading-[16.80px] cursor-pointer"
                 //onClick={handleForgetPassword}
               >
                 Forgot password

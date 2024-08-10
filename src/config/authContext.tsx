@@ -102,8 +102,8 @@ const AuthProvider = ({ children }: Props) => {
       const response = await axiosInstance.post(apiURL, { name,email,password });
       console.log("signup request", response);
       localStorage.setItem("token",response?.data?.token );
-      localStorage.setItem("user",response?.data);
-      console.log("from authcontext",response?.data);
+      localStorage.setItem("user",JSON.stringify(response?.data));
+      console.log("from authcontext" , JSON.stringify(response?.data));
       
       // const token = localStorage.getItem("token");
       // if (token) {

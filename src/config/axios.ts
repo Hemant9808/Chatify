@@ -26,7 +26,7 @@
 
 import axios, { AxiosInstance } from "axios";
 export const createAxiosInstance = (): AxiosInstance => {
-  const baseURL = 'http://localhost:3000/';
+  const baseURL = ' https://chatify-backend-4.onrender.com/';
   const axiosInstance: AxiosInstance = axios.create({
     baseURL: `${baseURL}`,
     headers: {
