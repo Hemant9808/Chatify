@@ -1,17 +1,16 @@
-import { createContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useEffect, ReactNode } from "react";
 
 // ** Next Import
-import { useRouter } from "next/router";
+
 
 // ** Axios
-import axios from "axios";
+
 
 // ** Config
 
 // **axios
 import { createAxiosInstance } from "./axios";
-import toast from "react-hot-toast";
-import { Params } from "react-router-dom";
+
 export interface AuthContextProps {
   checkEmail: (email: string) => Promise<any>;
   login: (email: string, password: string) => Promise<any>;

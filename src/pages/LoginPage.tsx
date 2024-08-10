@@ -1,26 +1,23 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import  {  useEffect, useState } from 'react'
 
 import ConfirmPassword from '../components/auth/ConfirmPassword'
 import EmailInput from '../components/auth/EmailInput'
 import PasswordInput from '../components/auth/PasswordInput'
 import { useNavigate } from 'react-router-dom';
 import { validateEmail } from '../utils/helper'
-import axios from 'axios'
 import toast from 'react-hot-toast'
 // import { useRouter } from 'next/router'
 import Loader from '../components/loader/Loader'
 import SvgComponent from '../components/auth/SvgComponent'
 import { useAuth } from '../config/useAuth'
-import { createBrowserHistory } from 'history';
+
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const history = createBrowserHistory();
   const auth = useAuth()
   const [currentComponent, setCurrentComponent] = useState('EmailInput') // State to manage which component to display
   const [email, setEmail] = useState('')
-  const [member, setMember] = useState(false)
   const [password, setPassword] = useState('')
   const [valid, setValid] = useState(true)
   const [loading, setLoading] = useState(false)
@@ -138,7 +135,7 @@ console.log("isLoggedIn login page", isLoggedIn);
       case 'EmailInput':
         return <EmailInput setCurrentComponent={setCurrentComponent} loading={loading} setValid={setValid} socialLoginClicked={socialLoginClicked} valid={valid} onsubmit={handleEmailSubmit} />
       case 'PasswordInput':
-        return <PasswordInput loading={loading} setCurrentComponent={setCurrentComponent} member={member} password={password} setPassword={setPassword} email={email} handleSignIn={handleSignIn} />
+        return <PasswordInput loading={loading} setCurrentComponent={setCurrentComponent} password={password} setPassword={setPassword} email={email} handleSignIn={handleSignIn} />
       case 'ConfirmPassword':
         return(!loading ? <ConfirmPassword   setCurrentComponent={setCurrentComponent} email={email} handleSubmit={handleSignUp} />:<Loader/>)
       default:

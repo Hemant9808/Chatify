@@ -6,13 +6,13 @@ interface passwordInputProps {
   password: string
   setPassword: any
   handleSignIn: () => void
-  member: boolean
+  
   setCurrentComponent: any
   loading:boolean
 }
 
 const passwordInput: React.FC<passwordInputProps> = ({
-  member,
+
   email,
   setCurrentComponent,
   password,

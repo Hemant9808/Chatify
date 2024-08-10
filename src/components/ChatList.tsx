@@ -5,9 +5,7 @@ import { updateAllMessages } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { io } from "socket.io-client";
 import debounce from 'lodash/debounce';
-import { map } from "lodash";
 interface Chat {
   _id: string;
   chatName: string;
@@ -105,17 +103,17 @@ const accessChat =async(userId:string)=>{
 }
  
 }
-const [sortedChats,setSortedChats]= useState<any>();
-const sortChat = ()=>{
-  if(chats.length>1){
-    const Chats=chats.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
-    setSortedChats(Chats);
-  }
-  else{
-    console.log("not sorted");
+// const [sortedChats,setSortedChats]= useState<any>();
+// const sortChat = ()=>{
+//   if(chats.length>1){
+//     const Chats=chats.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+//     setSortedChats(Chats);
+//   }
+//   else{
+//     console.log("not sorted");
     
-  }
-}
+//   }
+// }
 
 //const Chats=chats.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
   return (

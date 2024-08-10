@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-interface message{
-    _id:string,
-    content:string,
-    sender:any,
-    chat:any,
-    createdAt:any
+// interface message{
+//     _id:string,
+//     content:string,
+//     sender:any,
+//     chat:any,
+//     createdAt:any
 
-}
+// }
 interface reduxState {
     user:any,
     messages:any ,

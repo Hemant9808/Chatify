@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 // import { IoMdArrowBack } from 'react-icons/io'
 
-import { Dispatch, SetStateAction } from 'react'
-import toast from 'react-hot-toast'
-import IconButton from '@mui/material/IconButton'
-import { Icon, InputAdornment } from '@mui/material'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 // import {  useRouter } from 'next/router
-import Loader from '../loader/Loader'
+
 
 interface ConfirmPasswordProps {
   email: string | string[] | undefined
@@ -25,7 +21,6 @@ const ConfirmPassword: React.FC<ConfirmPasswordProps> = ({ email, handleSubmit, 
     password: '',
   })
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false)
   //const router = useRouter()
 
   const signup = (e: any) => {

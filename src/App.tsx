@@ -9,7 +9,6 @@ import ChatPage from "./pages/ChatPage";
 import LoginPage from "./pages/LoginPage";
 import { AuthProvider } from "./config/authContext";
 import { Toaster } from "react-hot-toast";
-import ProtectedRoute from "./components/ProtectedRoute";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 

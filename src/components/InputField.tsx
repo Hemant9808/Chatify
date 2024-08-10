@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../config/useAuth';
 import SendIcon from '@mui/icons-material/Send';
 import { IconButton } from '@mui/material';
-import { addSingleMessage, updateAllMessages } from '../redux/userSlice';
+import { addSingleMessage } from '../redux/userSlice';
 import { useDispatch } from 'react-redux';
 interface inputFieldProps {
  

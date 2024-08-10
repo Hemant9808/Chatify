@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import ChatList from "../components/ChatList";
 import MessageArea from "../components/MessageArea";
 import InputField from "../components/InputField";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useAuth } from "../config/useAuth";
 import ChatName from "../components/ChatName";
 import { addSingleMessage, updateChat } from "../redux/userSlice";
