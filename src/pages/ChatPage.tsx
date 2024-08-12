@@ -20,6 +20,7 @@ var  socket: Socket | null = null;
 const ChatPage: React.FC = () => {
   const dispatch = useDispatch()
   const auth = useAuth();
+  
   const navigate = useNavigate();
   // const [chats, setChats] = useState<any>([]);
   const [messages, setMessages] = useState<any>([]);
