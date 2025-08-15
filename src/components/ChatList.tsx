@@ -96,7 +96,7 @@ const accessChat =async(userId:string)=>{
  if(response._id){
   console.log("response._id",response._id);
   
-  const resp = await selectChat(response._id)
+  // const resp = await selectChat(response._id)
 }else{
   console.log("chat id not found");
   
